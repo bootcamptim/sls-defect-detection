@@ -1,0 +1,7 @@
+raw_image_input/*
+
+images
+!images/defect/
+!images/ok
+
+data/*
