@@ -5,3 +5,8 @@ images
 !images/ok
 
 data/*
+
+logs/*
+
+.DS_Store
+.DS_Store
