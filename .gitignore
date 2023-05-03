@@ -1,12 +1,15 @@
 raw_image_input/*
 
 images
-!images/defect/
-!images/ok
+!data/defect/.gitkeep
+!data/ok/.gitkeep
+
+data_overheating/*
 
 data/*
 
-models
+models/*
+
 
 logs/*
 
