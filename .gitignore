@@ -4,7 +4,10 @@ images
 !data/defect/.gitkeep
 !data/ok/.gitkeep
 
-data_overheating/*
+230417_Heating and Overheating/*
+230503_Hot Run/*
+230511_Hot Run 3/*
+
 
 data/*
 
