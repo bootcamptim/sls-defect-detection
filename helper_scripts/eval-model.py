@@ -2,7 +2,7 @@ import os
 import tensorflow as tf
 from tensorflow.keras import metrics
 
-model_dir = '../models/dense3_softmax/particledrag_dataset=230517_epochs=10_WeightedCategoricalCrossentropy_LRS=True.h5'
+model_dir = '../models/sobel/particledrag_dataset=230517_epochs=15_WeightedCategoricalCrossentropy_LRS=True_Sobel.h5'
 # model_dir = '../models/dense3_softmax/particledrag_dataset=230503_epochs=15.h5'
 data_dir = '../230517_Consolidated Data'
 
@@ -25,6 +25,24 @@ def weighted_cross_entropy(y_true, y_pred):
     
     return tf.reduce_mean(weighted_ce)
 
+
+# provide custom layer
+class SobelFilteringLayer(tf.keras.layers.Layer):
+    def __init__(self, name='SobelFilteringLayer', **kwargs):
+        super(SobelFilteringLayer, self).__init__()
+    
+    def call(self, inputs):
+
+        gray_images = tf.image.rgb_to_grayscale(inputs)
+        sobel_edges = tf.image.sobel_edges(gray_images)
+        edge_x = sobel_edges[..., 0]
+        edge_y = sobel_edges[..., 1]
+       
+        edges = tf.stack([edge_x, edge_y], axis=-1)
+     
+        return tf.reshape(edges, [-1, inputs.shape[1], inputs.shape[2], 2])
+
+
 # Custom F1 metric
 class F1Score(tf.keras.metrics.Metric):
     def __init__(self, name='f1_score', **kwargs):
@@ -46,7 +64,7 @@ class F1Score(tf.keras.metrics.Metric):
         return 2 * ((precision * recall) / (precision + recall + tf.keras.backend.epsilon()))
 
 # Load model
-model = tf.keras.models.load_model(model_dir, compile=False)
+model = tf.keras.models.load_model(model_dir, compile=False, custom_objects={'SobelFilteringLayer': SobelFilteringLayer})
 
 # Compile the model with custom loss function and metrics
 model.compile(
