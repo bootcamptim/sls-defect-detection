@@ -2,13 +2,12 @@ import os
 import tensorflow as tf
 from tensorflow.keras import metrics
 
-# Provide the paths for the model and data
 model_dir = '../models/dense3_softmax/particledrag_dataset=230517_epochs=10_WeightedCategoricalCrossentropy.h5'
+# model_dir = '../models/dense3_softmax/particledrag_dataset=230503_epochs=15.h5'
 data_dir = '../230517_Consolidated Data'
-eval_data_path = '/path/to/your/eval-data'
 
-test_dir = '../eval-data'
-eval_data = tf.keras.utils.image_dataset_from_directory(test_dir, image_size=(480, 640), label_mode='categorical')
+eval_dir = '../eval-data'
+eval_data = tf.keras.utils.image_dataset_from_directory(eval_dir, image_size=(480, 640), label_mode='categorical')
 
 # Compute class weights and custom loss function
 total_count = len(os.listdir(data_dir))
@@ -63,7 +62,7 @@ model.compile(
 
 # Evaluate the model
 results = model.evaluate(eval_data)
-print('Evaluation results:', results)
+print('Loss:', results[0])
 print('Accuracy:', results[1])
 print('Precision:', results[2])
 print('F1 Score:', results[3])
