@@ -8,6 +8,7 @@ images
 230503_Hot Run/*
 230511_Hot Run 3/*
 230517_Consolidated Data/*
+eval-data/*
 
 
 data/*
@@ -20,6 +21,8 @@ logs/*
 .DS_Store
 
 remove_duplicates.py
+create-eval-dataset.py
+copy-files.py
 
 .DS_Store
 
