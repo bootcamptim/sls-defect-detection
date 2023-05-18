@@ -2,7 +2,7 @@ import os
 import tensorflow as tf
 from tensorflow.keras import metrics
 
-model_dir = '../models/dense3_softmax/particledrag_dataset=230517_epochs=10_WeightedCategoricalCrossentropy.h5'
+model_dir = '../models/dense3_softmax/particledrag_dataset=230517_epochs=10_WeightedCategoricalCrossentropy_LRS=True.h5'
 # model_dir = '../models/dense3_softmax/particledrag_dataset=230503_epochs=15.h5'
 data_dir = '../230517_Consolidated Data'
 
