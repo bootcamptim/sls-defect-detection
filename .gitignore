@@ -24,6 +24,7 @@ logs/*
 remove_duplicates.py
 create-eval-dataset.py
 copy-files.py
+visualize-model.ipynb
 
 .DS_Store
 
